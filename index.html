@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Skydio X10 Flight Weather + TAF/METAR Check</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <h1>Skydio X10 Flight Weather Check</h1>
+      <p class="subtitle">Get a GO / CAUTION / NO-GO recommendation using forecast weather + nearest station METAR/TAF context.</p>
+
+      <section class="card controls">
+        <h2>Mission Location</h2>
+        <div class="form-row">
+          <label for="location-input">Address, ZIP code, city, or place</label>
+          <input id="location-input" type="text" placeholder="e.g. 94402, 123 Main St San Mateo CA, KSFO" />
+          <button id="search-btn">Check Weather</button>
+        </div>
+        <p class="hint">Geocoding: OpenStreetMap Nominatim. Weather: Open-Meteo. Aviation: weather.gov station observation + TAF products.</p>
+      </section>
+
+      <section class="card" id="status-card" hidden>
+        <h2>Flight Recommendation</h2>
+        <div id="overall-status" class="status-pill">Loading...</div>
+        <p id="location-label"></p>
+        <p id="updated-label"></p>
+        <p id="station-label"></p>
+      </section>
+
+      <section class="card" id="conditions-card" hidden>
+        <h2>Conditions Used for Ruling</h2>
+        <ul id="conditions-list" class="conditions"></ul>
+      </section>
+
+      <section class="card" id="aviation-card" hidden>
+        <h2>TAF / METAR Data Used</h2>
+        <p id="aviation-summary" class="hint"></p>
+        <div class="aviation-grid">
+          <div>
+            <h3>Latest METAR (raw)</h3>
+            <pre id="metar-raw" class="code-block">No METAR data yet.</pre>
+          </div>
+          <div>
+            <h3>Latest TAF (raw)</h3>
+            <pre id="taf-raw" class="code-block">No TAF data yet.</pre>
+          </div>
+        </div>
+      </section>
+
+      <p id="error" class="error" hidden></p>
+    </main>
+
+    <script src="app.js" defer></script>
+  </body>
+</html>
