@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Skydio X10 Flight Weather Check</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <h1>Skydio X10 Flight Weather Check</h1>
+      <p class="subtitle">Quickly assess whether weather conditions are suitable for a safe X10 mission.</p>
+
+      <section class="card controls">
+        <h2>Mission Location</h2>
+        <div class="form-row">
+          <label for="location-input">City or place</label>
+          <input id="location-input" type="text" placeholder="e.g. San Mateo, CA" />
+          <button id="search-btn">Check Weather</button>
+        </div>
+        <p class="hint">Uses Open-Meteo geocoding + forecast APIs (no API key required).</p>
+      </section>
+
+      <section class="card" id="status-card" hidden>
+        <h2>Flight Recommendation</h2>
+        <div id="overall-status" class="status-pill">Loading...</div>
+        <p id="location-label"></p>
+        <p id="updated-label"></p>
+      </section>
+
+      <section class="card" id="conditions-card" hidden>
+        <h2>Current Conditions</h2>
+        <ul id="conditions-list" class="conditions"></ul>
+      </section>
+
+      <section class="card" id="rules-card">
+        <h2>X10 Risk Rules (editable in code)</h2>
+        <ul>
+          <li>Wind speed &gt; 10 m/s → Caution</li>
+          <li>Wind speed &gt; 14 m/s or gusts &gt; 18 m/s → No-Go</li>
+          <li>Precipitation &gt; 0.5 mm/h → Caution</li>
+          <li>Precipitation &gt; 2 mm/h or snowfall &gt; 0.5 mm/h → No-Go</li>
+          <li>Visibility &lt; 3000 m or cloud base &lt; 120 m → No-Go</li>
+        </ul>
+      </section>
+
+      <p id="error" class="error" hidden></p>
+    </main>
+
+    <script src="app.js" defer></script>
+  </body>
+</html>
